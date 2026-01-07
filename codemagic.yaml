@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:
@@ -16,11 +18,17 @@ dev_dependencies:
 
 workflows:
   flutter-build:
-    name: Build Android APK
+    name: Build Flutter App
     environment:
       flutter: stable
+      xcode: latest
+      cocoapods: 1.15.0
     scripts:
+      # ✅ 关键：进入 Flutter 项目目录
+      - cd flutterApp        # 替换为你的实际项目文件夹名
       - flutter pub get
       - flutter build apk --release
+      - flutter build ios --release --no-codesign
     artifacts:
-      - build/app/outputs/apk/release/app-release.apk
+      - flutterApp/build/app/outputs/apk/release/app-release.apk
+      - flutterApp/build/ios/ipa/*.ipa
