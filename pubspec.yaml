@@ -25,7 +25,7 @@ workflows:
       cocoapods: 1.15.0
     scripts:
       # ✅ 关键：进入 Flutter 项目目录
-      - cd flutterApp-main    # 替换为你的实际项目文件夹名
+      - cd flutterApp    # 替换为你的实际项目文件夹名
       - flutter pub get
       - flutter build apk --release
       - flutter build ios --release --no-codesign
